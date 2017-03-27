@@ -9,24 +9,44 @@ import {
   AppRegistry,
   StyleSheet,
   Text,
-  View
+  View,
+  Button
 } from 'react-native';
+import App from './App';
+
+import NotificationsIOS from 'react-native-notifications';
+
 
 export default class EorzeaTimers extends Component {
+  onButtonPress() {
+    console.log('button pressed');
+    debugger;
+    let localNotification = NotificationsIOS.localNotification({
+        	alertBody: "Local notificiation!",
+        	alertTitle: "Local Notification Title",
+        	alertAction: "Click here to open",
+        	soundName: "chime.aiff",
+        	category: "SOME_CATEGORY",
+        	userInfo: { }
+        });
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-      </View>
+      <App>
+        <View style={styles.container}>
+          <Text style={styles.welcome}>
+            Welcome to React Native!
+          </Text>
+          <Text style={styles.instructions}>
+            To get started, edit index.ios.js
+          </Text>
+          <Text style={styles.instructions}>
+            Press Cmd+R to reload,{'\n'}
+            Cmd+D or shake for dev menu
+          </Text>
+          <Button onPress={this.onButtonPress} title="Push Me!" />
+        </View>
+      </App>
     );
   }
 }
